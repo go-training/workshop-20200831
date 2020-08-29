@@ -5,7 +5,7 @@ import (
 )
 
 type (
-	// Config provides the system configuration.
+	// Server ...
 	Server struct {
 		Port string `envconfig:"GIN_SERVER_PORT" default:"8088"`
 	}
@@ -15,14 +15,10 @@ type (
 	}
 )
 
-var (
-	Setting = &setting{}
-)
+// Setting config
+var Setting = &setting{}
 
+// Load load config
 func Load() {
 	envconfig.MustProcess("", Setting)
 }
-
-// func init() {
-// 	envconfig.MustProcess("", Setting)
-// }
