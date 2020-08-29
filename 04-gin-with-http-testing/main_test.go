@@ -5,14 +5,12 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"gin-http-server/router"
-
 	"github.com/gavv/httpexpect"
 )
 
 func TestRouter(t *testing.T) {
 	// create http.Handler
-	handler := router.Init()
+	handler := router()
 
 	// run server using httptest
 	server := httptest.NewServer(handler)
