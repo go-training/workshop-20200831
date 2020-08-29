@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// User data
 type User struct {
 	ID    int64  `json:"user_id"`
 	Name  string `json:"name222"`
