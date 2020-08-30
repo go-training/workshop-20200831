@@ -90,7 +90,9 @@ func main() {
 	}
 
 	if *server {
-		s.ListenAndServe()
+		if err := s.ListenAndServe(); err != nil {
+			log.Fatal(err)
+		}
 	}
 
 	if *ping {
