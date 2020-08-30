@@ -42,5 +42,7 @@ func main() {
 	}
 
 	log.Info().Msg("start the api server")
-	s.ListenAndServe()
+	if err := s.ListenAndServe(); err != nil {
+		log.Fatal().Err(err).Msg("can't start the server")
+	}
 }
