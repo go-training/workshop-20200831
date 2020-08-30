@@ -10,15 +10,8 @@ type Server struct {
 	Port  string `envconfig:"GIN_SERVER_PORT"`
 }
 
-// Logs ...
-type Logs struct {
-	Pretty bool `envconfig:"GIN_LOG_PRETTY"`
-	Color  bool `envconfig:"GIN_LOG_COLOR"`
-}
-
 type setting struct {
 	Server
-	Logs
 	Debug bool `envconfig:"GIN_DEBUG"`
 }
 

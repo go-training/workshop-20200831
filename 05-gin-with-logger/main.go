@@ -15,18 +15,12 @@ import (
 
 func setLogger() {
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
-	if config.Setting.Debug {
-		zerolog.SetGlobalLevel(zerolog.DebugLevel)
-	}
-
-	if config.Setting.Logs.Pretty {
-		log.Logger = log.Output(
-			zerolog.ConsoleWriter{
-				Out:     os.Stderr,
-				NoColor: !config.Setting.Logs.Color,
-			},
-		)
-	}
+	log.Logger = log.Output(
+		zerolog.ConsoleWriter{
+			Out:     os.Stderr,
+			NoColor: false,
+		},
+	)
 }
 
 func main() {
