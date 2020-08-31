@@ -69,7 +69,7 @@ func main() {
 	})
 
 	r.GET("/healthz", func(c *gin.Context) {
-		c.AbortWithStatus(http.StatusOK))
+		c.AbortWithStatus(http.StatusOK)
 	})
 
 	if *server {
