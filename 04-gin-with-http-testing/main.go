@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"log"
 	"net/http"
 	"time"
@@ -76,10 +75,6 @@ func router() http.Handler {
 
 func main() {
 	config.Load()
-	var server = flag.Bool("server", false, "enable server")
-	var ping = flag.Bool("ping", false, "ping server")
-	flag.Parse()
-
 	hander := router()
 
 	s := http.Server{
@@ -89,22 +84,7 @@ func main() {
 		WriteTimeout: 10 * time.Second,
 	}
 
-	if *server {
-		if err := s.ListenAndServe(); err != nil {
-			log.Fatal(err)
-		}
-	}
-
-	if *ping {
-		resp, err := http.Get("http://localhost:" + config.Setting.Server.Port + "/healthz")
-		if err != nil {
-			log.Fatal(err)
-		}
-		defer resp.Body.Close()
-		if resp.StatusCode != http.StatusOK {
-			log.Fatal("can't connect to server")
-		}
-
-		log.Println("connected to the server")
+	if err := s.ListenAndServe(); err != nil {
+		log.Fatal(err)
 	}
 }

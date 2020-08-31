@@ -10,8 +10,14 @@ type (
 		Port string `envconfig:"GIN_SERVER_PORT" default:"8088"`
 	}
 
+	// Database ...
+	Database struct {
+		Port string `envconfig:"GIN_DATABASE_PORT" default:"5432"`
+	}
+
 	setting struct {
-		Server
+		Server   Server
+		Database Database
 	}
 )
 
