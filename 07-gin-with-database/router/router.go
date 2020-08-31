@@ -3,17 +3,12 @@ package router
 import (
 	"net/http"
 
+	"gin-http-server/model"
+
 	"github.com/gin-gonic/gin"
 	"github.com/rs/zerolog/log"
 	"gorm.io/gorm"
 )
-
-// User ...
-type User struct {
-	ID    int64  `json:"id"`
-	Name  string `json:"name"`
-	Email string `json:"email"`
-}
 
 // Handler init
 func Handler(db *gorm.DB) http.Handler {
@@ -48,7 +43,7 @@ func Handler(db *gorm.DB) http.Handler {
 	r.GET("/user/:id", func(c *gin.Context) {
 		id := c.Param("id")
 
-		user := &User{}
+		user := &model.User{}
 		if err := db.First(user, id).Error; err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
 				"err": err,
@@ -62,7 +57,7 @@ func Handler(db *gorm.DB) http.Handler {
 	})
 
 	r.POST("/user", func(c *gin.Context) {
-		user := &User{
+		user := &model.User{
 			Name:  "test",
 			Email: "test@gmail.com",
 		}
@@ -81,7 +76,7 @@ func Handler(db *gorm.DB) http.Handler {
 
 	r.PUT("/user/:id", func(c *gin.Context) {
 		id := c.Param("id")
-		data := &User{
+		data := &model.User{
 			Name:  "foo",
 			Email: "foo@gmail.com",
 		}
@@ -93,7 +88,7 @@ func Handler(db *gorm.DB) http.Handler {
 
 	r.DELETE("/user/:id", func(c *gin.Context) {
 		id := c.Param("id")
-		data := &User{
+		data := &model.User{
 			Name:  "foo",
 			Email: "foo@gmail.com",
 		}

@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"gin-http-server/config"
+	"gin-http-server/model"
 	"gin-http-server/router"
 
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
@@ -37,7 +38,7 @@ func main() {
 	sqlDB.SetConnMaxLifetime(time.Hour)
 
 	// Migrate the schema
-	db.AutoMigrate(&router.User{})
+	db.AutoMigrate(&model.User{})
 
 	server := &http.Server{
 		Addr:    ":" + config.Setting.Server.Port,
