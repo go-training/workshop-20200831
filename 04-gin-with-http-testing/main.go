@@ -85,7 +85,7 @@ func main() {
 	s := http.Server{
 		Addr:         ":" + config.Setting.Server.Port,
 		Handler:      hander,
-		ReadTimeout:  10 * time.Second,
+		ReadTimeout:  20 * time.Second,
 		WriteTimeout: 10 * time.Second,
 	}
 
