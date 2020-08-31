@@ -19,7 +19,7 @@ type user struct {
 // Config ...
 type Config struct {
 	Debug bool   `envconfig:"GIN_DEBUG"`
-	Port  string `envconfig:"GIN_SERVER_PORT"`
+	Port  string `envconfig:"GIN_SERVER_PORT" default:"8081"`
 }
 
 func main() {
@@ -83,7 +83,7 @@ func main() {
 	})
 
 	if *server {
-		r.Run(":" + config.Port) // listen on 0.0.0.0:8080
+		r.Run(":" + config.Port) // listen on 0.0.0.0:8081
 	}
 
 	if *ping {
