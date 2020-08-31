@@ -31,5 +31,10 @@ func main() {
 			"user": user,
 		})
 	})
+
+	r.GET("/healthz", func(c *gin.Context) {
+		c.AbortWithStatus(http.StatusOK)
+	})
+
 	r.Run(":8081") // listen and serve on 0.0.0.0:8080
 }
